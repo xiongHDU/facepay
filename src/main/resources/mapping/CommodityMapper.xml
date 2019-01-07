@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.face.facepay.dao.CommodityDao">
+
+    <select id="queryCommodityList" resultType="com.face.facepay.pojo.Commodity">
+        SELECT * FROM  commodity
+    </select>
+
+    <insert id="addCommodity">
+    INSERT INTO commodity VALUES
+        <foreach collection="list" item="commodity" separator=",">
+          (null,#{commodity.commodityName},#{commodity.commodityCount},#{commodity.commodityPrice},#{commodity.commodityCode})
+        </foreach>
+    </insert>
+    <update id="addCommodityCount">
+        UPDATE commodity SET commodity_count = commodity_count + #{count} WHERE commodity_id = #{commodityId}
+    </update>
+
+    <update id="updateCommodityCount">
+        UPDATE commodity SET commodity_count = #{count} WHERE commodity_code = #{commodityCode}
+    </update>
+
+    <select id="getCommodityCount" resultType="java.lang.Integer">
+        SELECT commodity_count FROM commodity WHERE commodity_code = #{commodityCode}
+    </select>
+    <select id="getCommodityIdByCommodityName" resultType="java.lang.Long">
+        SELECT commodity_id FROM commodity WHERE commodity_name = #{commodityName}
+    </select>
+    <select id="queryCommodityListByCommodityCode" resultType="com.face.facepay.pojo.Commodity">
+        SELECT * FROM commodity WHERE commodity_code IN
+        <foreach collection="list" open="(" close=")" item="item" separator=",">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
+
+

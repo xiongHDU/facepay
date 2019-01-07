@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.face.facepay.dao.OrderDao">
+
+    <insert id="insertOrder">
+        INSERT INTO order VALUES (null,#{userId},#{orderCode},#{commodityList},#{time},#{totalPrice})
+    </insert>
+    <select id="queryOrderByUsername" resultType="com.face.facepay.pojo.Order">
+        SELECT o.* FROM order o , user u WHERE o.user_id = u.user_id AND u.username = #{username}
+    </select>
+</mapper>
+
+

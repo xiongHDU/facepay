@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+  datasource:
+    name: facepay
+    url: jdbc:mysql://127.0.0.1:3306/face?serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.face.facepay.pojo
+  configuration:
+    map-underscore-to-camel-case: true
