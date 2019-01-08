@@ -86,10 +86,16 @@ public class MoneyService {
             f=new File(file.getOriginalFilename());
             inputStreamToFile(ins, f);
         }
+
         //根据图片文件上传到腾讯云，找到用户
         String personId = FaceRecognitionUtils.faceFaceIdentify(f);
-        if(personId==null)
+        if(personId==null){
+            File del = new File(f.toURI());
+            del.delete();
             return response.error(-700);
+        }
+        File del = new File(f.toURI());
+        del.delete();
         User user = userDao.getUser(personId);
         //将commodityCodeList去重，转为数量增加
         Map<String,Integer> map = new HashMap<>();

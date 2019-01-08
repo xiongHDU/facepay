@@ -147,12 +147,12 @@ public class UserService {
         }
         if(FaceRecognitionUtils.faceNewPerson(user,f)){
             userDao.insertUser(user);
-            File f2 = new File(f.getAbsolutePath());
+            File f2 = new File(f.toURI());
             f2.delete();
             return response;
         }
         else {
-            File f2 = new File(f.getAbsolutePath());
+            File f2 = new File(f.toURI());
             f2.delete();
             return response.error(-402);
         }
