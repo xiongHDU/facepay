@@ -56,7 +56,8 @@ public class UserService {
         }
         for(Order order: orderList){
             OrderDto orderDto = new OrderDto();
-            orderDto.setCommodityList(new Gson().fromJson(order.getCommodityList(),new TypeToken<List<Commodity>>(){}.getType()));
+            String commoditylist = new String(order.getCommodityList());
+            orderDto.setCommodityList(new Gson().fromJson(commoditylist,new TypeToken<List<Commodity>>(){}.getType()));
             orderDto.setOrderCode(order.getOrderCode());
             orderDto.setOrderId(order.getOrderId());
             orderDto.setUserId(order.getUserId());

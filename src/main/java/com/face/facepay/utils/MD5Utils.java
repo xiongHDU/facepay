@@ -3,6 +3,7 @@ package com.face.facepay.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+
 public class MD5Utils {
     /**
      * MD5方法

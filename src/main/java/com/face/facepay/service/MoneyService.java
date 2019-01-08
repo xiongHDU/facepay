@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.*;
 
@@ -69,7 +70,7 @@ public class MoneyService {
      * @throws ParseException
      */
     @Transactional
-    public PostResponse reduceMoney(String commodityCodes, MultipartFile file) throws ParseException {
+    public PostResponse reduceMoney(String commodityCodes, MultipartFile file) throws ParseException, UnsupportedEncodingException {
         PostResponse response = new PostResponse();
         File f = null;
         if(file.equals("")||file.getSize()<=0){
@@ -126,10 +127,9 @@ public class MoneyService {
         //创建订单
         String commoditylist = new Gson().toJson(commodityList);
         //将字符串加上转义
-        commoditylist = commoditylist.replaceAll("\"","\\\"");
-        System.out.println(commoditylist);
+        byte[] commoditylistbyte = commoditylist.getBytes("UTF-8");
         Order order = new Order();
-        order.setCommodityList(commoditylist);
+        order.setCommodityList(commoditylistbyte);
         order.setUserId(user.getUserId());
         order.setTime(DateUtils.dateToString(new Date()));
         order.setOrderCode(OrderCodeUtils.getOrderCode(commoditylist,user.getUsername()));

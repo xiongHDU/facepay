@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
     private long orderId;
     private long userId;
-    private String commodityList;//此处以json格式字符串存入
+    private byte[] commodityList;//此处以json格式字符串存入
     private String orderCode;
     private String time;
     private double totalPrice;
@@ -27,11 +27,11 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getCommodityList() {
+    public byte[] getCommodityList() {
         return commodityList;
     }
 
-    public void setCommodityList(String commodityList) {
+    public void setCommodityList(byte[] commodityList) {
         this.commodityList = commodityList;
     }
 

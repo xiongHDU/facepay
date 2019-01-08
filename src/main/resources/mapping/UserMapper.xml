@@ -2,34 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.face.facepay.dao.UserDao">
     <select id="getUser" resultType="com.face.facepay.pojo.User">
-        SELECT user_id,username,balance,role_name FROM  user WHERE username =#{username}
+        SELECT user_id,username,balance,role_name FROM  face_user WHERE username =#{username}
     </select>
 
     <select id="getPassword" resultType="java.lang.String">
-        SELECT password,role_name FROM user WHERE username=#{username}
+        SELECT password,role_name FROM face_user WHERE username=#{username}
     </select>
     <select id="getBalanceByUsername" resultType="java.lang.Double">
-        SELECT balance FROM user WHERE username = #{username}
+        SELECT balance FROM face_user WHERE username = #{username}
     </select>
 
     <insert id="insertUser">
-        INSERT INTO user VALUES (#{userId},#{username},#{password},#{balance})
+        INSERT INTO face_user VALUES (#{userId},#{username},#{password},#{balance})
     </insert>
 
     <update id="updateUserMoneyByUsername">
-        UPDATE user SET balance = #{balance} WHERE username = #{username}
+        UPDATE face_user SET balance = #{balance} WHERE username = #{username}
     </update>
 
     <update id="addUserMoneyByUsername">
-        UPDATE user SET balance = balance + #{balance} WHERE username = #{username}
+        UPDATE face_user SET balance = balance + #{balance} WHERE username = #{username}
     </update>
 
     <select id="queryUser" resultType="com.face.facepay.pojo.User">
-        SELECT username,user_id,role_name FROM user WHERE
+        SELECT username,user_id,role_name FROM face_user
     </select>
 
     <update id="updateUserRoleByUsername">
-        UPDATE user SET role_name = #{roleName} WHERE username = #{username}
+        UPDATE face_user SET role_name = #{roleName} WHERE username = #{username}
     </update>
 
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 
 
@@ -24,7 +25,7 @@ public class MoneyController {
 
     @RequestMapping("reduce")
     public PostResponse buyCommodityReduceMoney(@RequestParam("commodityCodeList") String commodityCodeList,
-                                                @RequestParam(value = "face",required = false) MultipartFile file) throws ParseException {
+                                                @RequestParam(value = "face",required = false) MultipartFile file) throws ParseException, UnsupportedEncodingException {
         return moneyService.reduceMoney(commodityCodeList,file);
     }
 }

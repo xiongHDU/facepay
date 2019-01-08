@@ -3,10 +3,11 @@
 <mapper namespace="com.face.facepay.dao.OrderDao">
 
     <insert id="insertOrder">
-        INSERT INTO order VALUES (null,#{userId},#{orderCode},#{commodityList},#{time},#{totalPrice})
+        INSERT INTO face_order(order_id,user_id,order_code,commodity_list,time,total_price)
+        VALUE (null,#{userId},#{orderCode},#{commodityList,jdbcType=BLOB},#{time},#{totalPrice})
     </insert>
     <select id="queryOrderByUsername" resultType="com.face.facepay.pojo.Order">
-        SELECT o.* FROM order o , user u WHERE o.user_id = u.user_id AND u.username = #{username}
+        SELECT o.* FROM face_order o , face_user u WHERE o.user_id = u.user_id AND u.username = #{username}
     </select>
 </mapper>
 
