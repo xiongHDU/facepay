@@ -14,6 +14,7 @@ import java.text.ParseException;
 
 @RestController
 @RequestMapping("facepay/money")
+@CrossOrigin
 public class MoneyController {
     @Autowired
     private MoneyService moneyService;

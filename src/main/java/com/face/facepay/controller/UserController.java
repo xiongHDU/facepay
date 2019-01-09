@@ -19,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("facepay/auth")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;

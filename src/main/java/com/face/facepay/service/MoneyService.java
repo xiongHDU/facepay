@@ -100,7 +100,9 @@ public class MoneyService {
         //将commodityCodeList去重，转为数量增加
         Map<String,Integer> map = new HashMap<>();
         String[] commodityCodeList = commodityCodes.split("\\|");
+
         for(String commodityCode:commodityCodeList){
+            if(commodityCode!=null&&commodityCode.length()!=0)
             if(map.containsKey(commodityCode)){
                 Integer code = map.get(commodityCode);
                 map.put(commodityCode,code+1);
